@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Lesson {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  topic            String
+  title            String
+  description      String
+  learningOutcomes Json      // Array of strings
+  keyConcepts      Json      // Array of objects with name and description
+  activities       Json      // Array of objects with title and description
+  content          Json?     // BlockNote content
+  metadata         Metadata?
+  moduleId         String?   @db.ObjectId
+  module           Module?   @relation(fields: [moduleId], references: [id])
+}
+
+type Metadata {
+  difficulty    String
+  estimatedTime String
+  prerequisites String[]
+}
+
+model Module {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+  difficulty  String
+  lessons     Lesson[]
+}
