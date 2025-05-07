@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import prisma from "./prisma"
+import {prisma} from "./prisma"
 
 // This function will call the OpenAI API in a real implementation
 // For now, it returns mock data
