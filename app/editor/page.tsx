@@ -184,7 +184,7 @@ export default function EditorPage() {
             description: `Analyze the provided case studies related to ${lesson.topic} and identify key principles in action.`,
           },
           {
-            title: "Collaborative Project",
+            title: "Collaborative Projects",
             description: `Work in teams to develop a solution to a problem using ${lesson.topic} concepts.`,
           },
           {
